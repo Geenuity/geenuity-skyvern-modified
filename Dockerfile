@@ -1,5 +1,9 @@
 FROM python:3.11 as requirements-stage
 
+RUN apt-get update \
+    && apt-get -y install libpq-dev gcc \
+    && pip install psycopg2
+
 WORKDIR /tmp
 RUN pip install poetry
 COPY ./pyproject.toml /tmp/pyproject.toml
